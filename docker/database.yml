@@ -1,18 +1,18 @@
 services:
   template-database:
-    container_name: postgres_${DATABASE_NAME}_users
+    container_name: template-database
     image: postgres
     environment:
-      - POSTGRES_USER=dispensa-users
-      - POSTGRES_PASSWORD=dispensa-users
-      - POSTGRES_DB=dispensa-users
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
     ports:
       - '5432:5432'
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U dispensa" ]
+      test: [ "CMD-SHELL", "pg_isready -U template" ]
       interval: 10s
       timeout: 5s
       retries: 5
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - template-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql

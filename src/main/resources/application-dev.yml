@@ -3,9 +3,9 @@ spring:
     import: classpath:rsa-keys/application-rsa-keys.yml
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/xxx
-    username: xxx
-    password: xxx
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     properties:
       hibernate:

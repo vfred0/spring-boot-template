@@ -1,6 +1,6 @@
 = Template Project
 
-Este proyecto es un template básico para aplicaciones Java utilizando Spring Boot, Gradle y JPA. A continuación se detallan las dependencias utilizadas, cómo cambiar el nombre del proyecto y cómo ejecutar la aplicación con Docker.
+Este proyecto es un template básico para aplicaciones Java utilizando Spring Boot 3.4.3, Gradle y JPA. A continuación se detallan las dependencias utilizadas, cómo cambiar el nombre del proyecto y cómo ejecutar la aplicación con Docker.
 
 == Dependencias
 
@@ -22,19 +22,27 @@ El proyecto incluye las siguientes dependencias:
 
 == Cambiar el Nombre del Proyecto
 
-Para cambiar el nombre del proyecto, edite el archivo `settings.gradle` y modifique la línea:
+=== Script Automatizado
 
-[source,groovy]
+El proyecto incluye un script Python (`rename-project.py`) que automatiza el proceso de cambio de nombre. Este script actualiza todos los archivos relevantes y renombra las clases Java necesarias.
+
+Para utilizar el script:
+
+[source,bash]
 ----
-rootProject.name = 'template'
+python rename-project.py <nuevo-nombre>
 ----
 
-Reemplace `'template'` con el nombre deseado para su proyecto.
+El script realizará las siguientes acciones:
+* Actualizar el nombre en `settings.gradle`
+* Actualizar referencias en archivos Docker
+* Actualizar configuración de base de datos
+* Renombrar la clase principal de la aplicación
 
 == Instrucciones de Uso
 
 1. Clone el repositorio.
-2. Cambie el nombre del proyecto en `settings.gradle`.
+2. Cambie el nombre del proyecto utilizando el script `rename-project.py` o manualmente.
 3. Configure las dependencias y ajustes necesarios en `build.gradle`.
 4. Ejecute el proyecto utilizando Gradle.
 
@@ -69,15 +77,3 @@ El archivo `docker-compose.yml` define dos servicios:
 * `db`: Una base de datos PostgreSQL
 
 El contenedor de la aplicación se construye utilizando el `Dockerfile` en la carpeta `docker` y se conecta a la base de datos PostgreSQL.
-
-== Recursos Adicionales
-
-Para más información, consulte la documentación oficial de las siguientes herramientas y bibliotecas:
-
-* https://docs.gradle.org[Documentación oficial de Gradle]
-* https://docs.spring.io/spring-boot/3.4.3/gradle-plugin[Guía de referencia del plugin Spring Boot Gradle]
-* https://docs.spring.io/spring-boot/3.4.3/reference/data/sql.html#data.sql.jpa-and-spring-data[Spring Data JPA]
-* https://docs.spring.io/spring-boot/3.4.3/reference/using/devtools.html[Spring Boot DevTools]
-* https://docs.spring.io/spring-boot/3.4.3/reference/web/spring-security.html#web.security.oauth2.authorization-server[OAuth2 Authorization Server]
-* https://docs.spring.io/spring-boot/3.4.3/reference/web/spring-security.html[Spring Security]
-* https://docs.spring.io/spring-boot/3.4.3/reference/web/servlet.html[Spring Web]

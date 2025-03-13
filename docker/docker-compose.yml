@@ -6,17 +6,17 @@ services:
     build:
       context: ../
       dockerfile: docker/Dockerfile-backend
-    container_name: dispensa_backend
-    image: dispensa/backend:latest
+    container_name: template-backend
+    image: template/backend:latest
     restart: unless-stopped
     environment:
-        DATABASE_URL: jdbc:postgresql://dispensa_database:${DATABASE_PORT}/${DATABASE_NAME}
+        DATABASE_URL: jdbc:postgresql://template-database:5432/${DATABASE_NAME}
         DATABASE_USERNAME: ${DATABASE_USERNAME}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - "8080:8080"
     depends_on:
-      database:
+      template-database:
         condition: service_healthy
 volumes:
-  db-data: {}
+  template-data: {}
