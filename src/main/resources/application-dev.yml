@@ -3,16 +3,16 @@ spring:
     import: classpath:rsa-keys/application-rsa-keys.yml
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/market-visitia
+    username: market-visitia
+    password: market-visitia
   jpa:
     properties:
       hibernate:
         format_sql: true
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
 logging:
   level:

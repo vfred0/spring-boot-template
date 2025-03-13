@@ -8,6 +8,7 @@ import com.gnoboa.services.exceptions.NotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,16 +28,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.accountRepository
-                .findByDni(username)
+                .findByUsername(username)
                 .map(this::map)
                 .orElseThrow(() -> new NotFoundException(MessageException.USER_NOT_FOUND));
     }
 
     private User map(UserAccount userAccount) {
         return new User(
-                userAccount.getDni(),
-                String.valueOf(userAccount.getOtp()),
-                Set.of(userAccount.getRole())
+                userAccount.getUsername(),
+                userAccount.getPassword(),
+                Set.of(new SimpleGrantedAuthority(userAccount.getRole().getValue()))
         );
     }
 }

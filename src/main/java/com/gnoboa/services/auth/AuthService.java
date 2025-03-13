@@ -21,8 +21,8 @@ public class AuthService {
 
     public AccessTokenDto authenticate(LoginRequestDto loginRequestDto) {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(
-                loginRequestDto.dni(),
-                loginRequestDto.otp()
+                loginRequestDto.username(),
+                loginRequestDto.password()
         );
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
 

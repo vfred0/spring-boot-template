@@ -6,5 +6,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface IUserAccountRepository extends IRepository<UserAccount, UUID> {
-    Optional<UserAccount> findByDni(String dni);
+    Optional<UserAccount> findByUsername(String username);
 }
