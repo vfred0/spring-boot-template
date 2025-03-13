@@ -54,7 +54,7 @@ def main():
         sys.exit(1)
 
     new_project_name = sys.argv[1]
-    old_project_name = "template-cxx"
+    old_project_name = "template"
     base_dir = Path(os.getcwd())
 
     print(f"Setting up project: {new_project_name}")
