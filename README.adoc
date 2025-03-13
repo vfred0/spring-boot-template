@@ -1,0 +1,83 @@
+= Template Project
+
+Este proyecto es un template básico para aplicaciones Java utilizando Spring Boot, Gradle y JPA. A continuación se detallan las dependencias utilizadas, cómo cambiar el nombre del proyecto y cómo ejecutar la aplicación con Docker.
+
+== Dependencias
+
+El proyecto incluye las siguientes dependencias:
+
+* `org.springframework.boot:spring-boot-starter-data-jpa`: Starter para JPA y Spring Data.
+* `org.springframework.boot:spring-boot-starter-oauth2-resource-server`: Starter para servidores de recursos OAuth2.
+* `org.springframework.boot:spring-boot-starter-security`: Starter para Spring Security.
+* `org.springframework.boot:spring-boot-starter-web`: Starter para aplicaciones web.
+* `org.projectlombok:lombok`: Biblioteca para reducir el código boilerplate en Java.
+* `org.springframework.boot:spring-boot-devtools`: Herramientas de desarrollo para Spring Boot.
+* `org.postgresql:postgresql`: Driver JDBC para PostgreSQL.
+* `org.springframework.boot:spring-boot-starter-test`: Starter para pruebas con Spring Boot.
+* `org.springframework.security:spring-security-test`: Herramientas de prueba para Spring Security.
+* `org.mapstruct:mapstruct`: Biblioteca para mapeo de objetos.
+* `org.modelmapper:modelmapper`: Biblioteca para mapeo de objetos.
+* `org.springdoc:springdoc-openapi-starter-webmvc-ui`: Starter para documentación OpenAPI con SpringDoc.
+* `org.modelmapper:modelmapper-module-record`: Soporte para Records en ModelMapper.
+
+== Cambiar el Nombre del Proyecto
+
+Para cambiar el nombre del proyecto, edite el archivo `settings.gradle` y modifique la línea:
+
+[source,groovy]
+----
+rootProject.name = 'template'
+----
+
+Reemplace `'template'` con el nombre deseado para su proyecto.
+
+== Instrucciones de Uso
+
+1. Clone el repositorio.
+2. Cambie el nombre del proyecto en `settings.gradle`.
+3. Configure las dependencias y ajustes necesarios en `build.gradle`.
+4. Ejecute el proyecto utilizando Gradle.
+
+== Ejecutar con Docker
+
+El proyecto incluye una carpeta `docker` con la configuración necesaria para ejecutar la aplicación utilizando Docker:
+
+=== Estructura de la Carpeta Docker
+[source]
+----
+docker/
+├── Dockerfile
+└── docker-compose.yml
+----
+
+=== Ejecutar la Aplicación con Docker Compose
+
+Para ejecutar la aplicación y la base de datos PostgreSQL con Docker Compose:
+
+[source,bash]
+----
+# Compilar la aplicación primero
+./gradlew build
+
+# Iniciar los contenedores
+docker-compose -f docker/docker-compose.yml up -d
+----
+
+El archivo `docker-compose.yml` define dos servicios:
+
+* `app`: El contenedor de la aplicación Spring Boot
+* `db`: Una base de datos PostgreSQL
+
+El contenedor de la aplicación se construye utilizando el `Dockerfile` en la carpeta `docker` y se conecta a la base de datos PostgreSQL.
+
+== Recursos Adicionales
+
+Para más información, consulte la documentación oficial de las siguientes herramientas y bibliotecas:
+
+* https://docs.gradle.org[Documentación oficial de Gradle]
+* https://docs.spring.io/spring-boot/3.4.3/gradle-plugin[Guía de referencia del plugin Spring Boot Gradle]
+* https://docs.spring.io/spring-boot/3.4.3/reference/data/sql.html#data.sql.jpa-and-spring-data[Spring Data JPA]
+* https://docs.spring.io/spring-boot/3.4.3/reference/using/devtools.html[Spring Boot DevTools]
+* https://docs.spring.io/spring-boot/3.4.3/reference/web/spring-security.html#web.security.oauth2.authorization-server[OAuth2 Authorization Server]
+* https://docs.spring.io/spring-boot/3.4.3/reference/web/spring-security.html[Spring Security]
+* https://docs.spring.io/spring-boot/3.4.3/reference/web/servlet.html[Spring Web]

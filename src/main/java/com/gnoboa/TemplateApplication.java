@@ -7,10 +7,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties(RsaKeys.class)
-public class MarketVisitiaApplication {
+public class TemplateApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketVisitiaApplication.class, args);
+		SpringApplication.run(TemplateApplication.class, args);
 	}
 
 }
