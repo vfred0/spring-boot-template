@@ -1,6 +1,7 @@
 package com.gnoboa.services.auth;
 
 import com.gnoboa.data.daos.IUserRepository;
+import com.gnoboa.data.entities.User;
 import com.gnoboa.services.exceptions.MessageException;
 import com.gnoboa.services.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class JwtAccessTokenService {
 
     private JwtClaimsSet getClaims(UserDetails userDetails, User user) {
         int AMOUNT_TO_ADD = 1;
-        return JwtClaimsSet.builder().subject(getSubject(userDetails)).claim("id", user.getId()).claim("names", user.getNames()).claim("credit", user.getCredit()).claim("scope", getRoles(userDetails)).issuedAt(Instant.now()).expiresAt(Instant.now().plus(AMOUNT_TO_ADD, ChronoUnit.DAYS)).build();
+        return JwtClaimsSet.builder().subject(getSubject(userDetails)).claim("id", user.getId()).claim("names", user.getNames()).claim("username", user.getUsername()).claim("scope", getRoles(userDetails)).issuedAt(Instant.now()).expiresAt(Instant.now().plus(AMOUNT_TO_ADD, ChronoUnit.DAYS)).build();
     }
 
     private List<String> getRoles(UserDetails userDetails) {
