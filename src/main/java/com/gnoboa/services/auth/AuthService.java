@@ -45,7 +45,7 @@ public class AuthService {
     }
 
     public void processOfSetOtp(DniRequestDto dniRequestDto) {
-        this.userRepository.findByDni(dniRequestDto.dni()).orElseThrow(() -> new NotFoundException(MessageException.USER_NOT_FOUND));
+        this.userRepository.findByUsername(dniRequestDto.dni()).orElseThrow(() -> new NotFoundException(MessageException.USER_NOT_FOUND));
         String otp = String.format("%06d", new Random().nextInt(1000000));
         UserAccount userAccount = this.userAccountRepository.findByDni(dniRequestDto.dni()).orElseGet(() -> UserAccount.builder()
                 .dni(dniRequestDto.dni())

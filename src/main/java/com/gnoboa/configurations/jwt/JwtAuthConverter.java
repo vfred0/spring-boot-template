@@ -27,7 +27,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
         String dni = jwt.getClaim(JwtClaimNames.SUB);
-        if (jwtAccessTokenService.isValid(jwt) && userAccountRepository.existsByDni(dni)) {
+        if (jwtAccessTokenService.isValid(jwt) && userAccountRepository.existsByUsername(dni)) {
             Collection<GrantedAuthority> authorities = extractRolesFromClaims(jwt);
             return new JwtAuthenticationToken(jwt, authorities, dni);
         }

@@ -45,7 +45,7 @@ public class JwtAccessTokenService {
 
     public String generateToken(Authentication authentication) {
         UserDetails userDetails = getUserDetails(authentication);
-        User user = this.userRepository.findByDni(getSubject(userDetails)).orElseThrow(() -> new NotFoundException(MessageException.USER_NOT_FOUND));
+        User user = this.userRepository.findByUsername(getSubject(userDetails)).orElseThrow(() -> new NotFoundException(MessageException.USER_NOT_FOUND));
         JwtClaimsSet claimsSet = getClaims(userDetails, user);
         return this.jwtEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();
     }
